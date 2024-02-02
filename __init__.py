@@ -4,7 +4,11 @@ from flask import json
 from urllib.request import urlopen
 import sqlite3
                                                                                                                                        
-app = Flask(__name__)                                                                                                                  
+app = Flask(__name__) 
+
+@app.route("/rapport/")
+def mongraphique():
+    return render_template("graphique.html")
                                                                                                                                        
 @app.route('/')
 def hello_world():
@@ -22,9 +26,6 @@ def meteo():
         results.append({'Jour': dt_value, 'temp': temp_value})
     return jsonify(results=results)
 
-@app.route("/rapport/")
-def mongraphique():
-    return render_template("graphique.html")
 
   
 @app.route("/fr/")
