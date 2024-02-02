@@ -9,10 +9,6 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
-  
-@app.route("/fr/")
-def monfr():
-    return "<h2>Bonjour tout le monde  !</h2>"
 
 @app.route('/paris/')
 def meteo():
@@ -25,6 +21,10 @@ def meteo():
         temp_day_value = list_element.get('temp', {}).get('day') - 273.15 # Conversion de Kelvin en °c 
         results.append({'Jour': dt_value, 'temp': temp_day_value})
     return jsonify(results=results)
+  
+@app.route("/fr/")
+def monfr():
+    return "<h2>Bonjour tout le monde  !</h2>"
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
