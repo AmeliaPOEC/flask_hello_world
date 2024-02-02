@@ -18,9 +18,10 @@ def meteo():
     results = []
     for list_element in json_content.get('list', []):
         dt_value = list_element.get('dt')
-        temp_day_value = list_element.get('temp', {}).get('day') - 273.15 # Conversion de Kelvin en °c 
-        results.append({'Jour': dt_value, 'temp': temp_day_value})
+        temp_value = list_element.get('temp', {}).get('day') - 273.15  # Correction here
+        results.append({'Jour': dt_value, 'temp': temp_value})
     return jsonify(results=results)
+
   
 @app.route("/fr/")
 def monfr():
