@@ -12,7 +12,7 @@ def hello_world():
   
   @app.route("/fr/")
 def monfr():
-    return "<h2>Bonjour tout le monde !</h2>"
+    return "<h2>Bonjour tout le monde  !</h2>"
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
