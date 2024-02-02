@@ -10,7 +10,7 @@ app = Flask(__name__)
 def hello_world():
     return render_template('hello.html')
   
-  @app.route("/fr/")
+@app.route("/fr/")
 def monfr():
     return "<h2>Bonjour tout le monde  !</h2>"
                                                                                                                                        
