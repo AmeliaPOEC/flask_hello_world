@@ -6,6 +6,17 @@ import sqlite3
                                                                                                                                        
 app = Flask(__name__) 
 
+@app.route('/fiche_client/<int:post_id>')
+def Readfiche(post_id):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM clients WHERE id = ?', (post_id,))
+    data = cursor.fetchall()
+    conn.close()
+    
+    # Rendre le template HTML et transmettre les données
+    return render_template('read_data.html', data=data)
+
 @app.route('/consultation/')
 def ReadBDD():
     conn = sqlite3.connect('database.db')
