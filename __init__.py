@@ -6,6 +6,22 @@ import sqlite3
                                                                                                                                        
 app = Flask(__name__) 
 
+@app.route('/api/search', methods=['GET'])
+def search_client():
+    query = request.args.get('nom')
+
+    if not query:
+        return jsonify({"error": "Veuillez fournir un paramètre 'nom' pour la recherche."}), 400
+
+    # Utiliser une requête SQL LIKE pour rechercher le nom dans la base de données
+    cursor.execute("SELECT * FROM clients WHERE nom LIKE ?", ('%' + query + '%',))
+    results = cursor.fetchall()
+
+    return jsonify({"results": results})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 @app.route('/fiche_client/<int:post_id>')
 def Readfiche(post_id):
     conn = sqlite3.connect('database.db')
